@@ -14,7 +14,7 @@ public class Gui {
     JButton jugarAzar = new JButton("Jugar al Azar");
     JButton admin = new JButton("Administrar");
     JButton salirProgram = new JButton("Salir");
-
+    
     public Gui() {
         frame.setLayout(null);
         frame.setSize(500, 500);
@@ -40,8 +40,18 @@ public class Gui {
 
         frame.setVisible(true);
         
+        jugarFijo.addActionListener((ActionEvent e) -> {
+            
+        });
+        
+        jugarAzar.addActionListener((ActionEvent e) -> {
+            
+        });
+        
         admin.addActionListener((ActionEvent e) -> {
-            JOptionPane.showInputDialog(null, "Agrege palabra: ");
+            String palabraAgregar = JOptionPane.showInputDialog(null, "Agrege palabra: ");
+            
+            
         });
         salirProgram.addActionListener((ActionEvent e) -> {
             System.exit(0);
