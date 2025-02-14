@@ -11,14 +11,11 @@ import javax.swing.JOptionPane;
  */
 public class JuegoAhorcadoFijo extends juegoAhorcadoBase {
     
-    public JuegoAhorcadoFijo(String palabraSecreta, String palabraActual, int intentos, String palabra) {
-        super(); 
-        this.palabraSecreta = palabra.toUpperCase();
-        this.palabraActual = "_".repeat(palabraSecreta.length()); 
-    }
     
+    @Override
     public void inicializarPalabraSecreta(){
-        
+        palabraSecreta = JOptionPane.showInputDialog("Ingrese la palabra a adivinar");
+        palabraActual = "_".repeat(palabraSecreta.length()); 
     }
     
      @Override
@@ -44,10 +41,12 @@ public class JuegoAhorcadoFijo extends juegoAhorcadoBase {
     }
     @Override
     public boolean hasGanado(){
-        return palabraActual.toString().equals(palabraSecreta);
+        return palabraActual.equals(palabraSecreta);
     }
     
+    @Override
     public void jugar() {
+        inicializarPalabraSecreta();
         while (intentos > 0 && !hasGanado()) {
             String input = JOptionPane.showInputDialog("Palabra: " + palabraActual +
                     "\nIntentos restantes: " + intentos +

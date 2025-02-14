@@ -8,7 +8,7 @@ package ahorcadoLab4;
  *
  * @author DELL
  */
-public abstract class juegoAhorcadoBase {
+public abstract class juegoAhorcadoBase implements juegoAhorcado {
     protected String palabraSecreta, palabraActual;
     protected int intentos;
 
