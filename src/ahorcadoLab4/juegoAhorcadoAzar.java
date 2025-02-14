@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
  * @author LENOVO
  */
 public class juegoAhorcadoAzar extends juegoAhorcadoBase{
-    AdminPalabrasSecretas APS = new AdminPalabrasSecretas();
-    
+    protected AdminPalabrasSecretas APS = new AdminPalabrasSecretas();
+      
     @Override
     public void actualizarPalabraActual(char letra) {
         char[] palabra = new char[palabraSecreta.length()];
@@ -64,6 +64,6 @@ public class juegoAhorcadoAzar extends juegoAhorcadoBase{
             JOptionPane.showMessageDialog(null, "¡Perdiste! La palabra era: " + palabraSecreta);
         }
     }
-    
-    
+
+ 
 }

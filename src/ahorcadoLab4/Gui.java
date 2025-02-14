@@ -15,7 +15,13 @@ public class Gui {
     JButton admin = new JButton("Administrar");
     JButton salirProgram = new JButton("Salir");
     
+    juegoAhorcadoBase juegoAhorcadoAzar;
+    juegoAhorcadoBase juegoAhorcadoFijo;
+    
     public Gui() {
+        juegoAhorcadoAzar = new juegoAhorcadoAzar();
+        juegoAhorcadoFijo = new JuegoAhorcadoFijo();
+        
         frame.setLayout(null);
         frame.setSize(500, 500);
         frame.setLocationRelativeTo(null);
@@ -41,17 +47,17 @@ public class Gui {
         frame.setVisible(true);
         
         jugarFijo.addActionListener((ActionEvent e) -> {
-            
+            juegoAhorcadoFijo.jugar();
         });
         
         jugarAzar.addActionListener((ActionEvent e) -> {
-            
+            juegoAhorcadoAzar.jugar();
         });
         
         admin.addActionListener((ActionEvent e) -> {
             String palabraAgregar = JOptionPane.showInputDialog(null, "Agrege palabra: ");
-            
-            
+            juegoAhorcadoAzar temp = (juegoAhorcadoAzar) juegoAhorcadoAzar;
+            temp.APS.agregarPalabra(palabraAgregar);
         });
         salirProgram.addActionListener((ActionEvent e) -> {
             System.exit(0);
