@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 public class Gui {
@@ -40,7 +41,7 @@ public class Gui {
         frame.setVisible(true);
         
         admin.addActionListener((ActionEvent e) -> {
-            
+            JOptionPane.showInputDialog(null, "Agrege palabra: ");
         });
         salirProgram.addActionListener((ActionEvent e) -> {
             System.exit(0);

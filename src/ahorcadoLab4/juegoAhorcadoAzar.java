@@ -11,7 +11,7 @@ package ahorcadoLab4;
 public class juegoAhorcadoAzar extends juegoAhorcadoBase{
            
     public juegoAhorcadoAzar (String palabraSecreta, String palabraActual, int intentos) {
-        super(palabraSecreta, palabraActual, intentos);
+        super();
     }
     
     @Override

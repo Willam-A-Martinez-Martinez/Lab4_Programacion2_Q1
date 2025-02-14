@@ -12,10 +12,8 @@ public abstract class juegoAhorcadoBase {
     protected String palabraSecreta, palabraActual;
     protected int intentos;
 
-    public juegoAhorcadoBase(String palabraSecreta, String palabraActual, int intentos) {
-        this.palabraSecreta = palabraSecreta;
-        this.palabraActual = palabraActual;
-        this.intentos = intentos;
+    public juegoAhorcadoBase() {
+        this.intentos = 5;
     }
     
     public abstract void actualizarPalabraActual(char letra);
