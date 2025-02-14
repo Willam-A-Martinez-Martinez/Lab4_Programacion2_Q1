@@ -8,6 +8,7 @@ package ahorcadoLab4;
  *
  * @author DELL
  */
-public class juegoAhorcado {
-    
+public interface juegoAhorcado {
+    void inicializarPalabraSecreta();
+    void jugar();
 }
