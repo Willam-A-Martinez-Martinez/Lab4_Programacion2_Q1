@@ -5,42 +5,43 @@
 package ahorcadoLab4;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author laraj
- */
-public class JuegoAhorcadoFijo extends juegoAhorcadoBase {
+class JuegoAhorcadoFijo extends juegoAhorcadoBase {
     
     
     @Override
-    public void inicializarPalabraSecreta(){
-        palabraSecreta = JOptionPane.showInputDialog("Ingrese la palabra a adivinar");
+    public void inicializarPalabraSecreta() {
+        palabraSecreta = JOptionPane.showInputDialog("ingrese palabra a adivinar");
         palabraActual = "_".repeat(palabraSecreta.length()); 
     }
     
-     @Override
-    public void actualizarPalabraActual(char letra) {  
+    @Override
+    public void actualizarPalabraActual(char letra) {
+        char[] palabra = new char[palabraSecreta.length()];
+        
+        for (int i = 0; i < palabraSecreta.length(); i++ ) {
+            if (palabraSecreta.charAt(i) == letra ){ 
+                palabra[i] = letra;
+            }else if(palabraActual.charAt(i) != '-'){
+                palabra[i] = palabraActual.charAt(i);}
+            else{
+                palabra[i] = '-';}
+        }
+        
+        palabraActual = new String(palabra);
+    }
+
+    @Override
+    public boolean verificarLetra(char letra) {
         for (int i = 0; i < palabraSecreta.length(); i++) {
-            if (palabraSecreta.charAt(i) == letra) {
-                StringBuilder sb = new StringBuilder(palabraActual);
-                sb.setCharAt(i, letra);
-                palabraActual = sb.toString();
-            }
+            if (letra == palabraSecreta.charAt(i))
+                return true;
         }
+        intentos -= 1;
+        return false;
     }
+
     @Override
-    public boolean verificarLetra(char letra){
-        letra=Character.toUpperCase(letra);
-        if(palabraSecreta.contains(String.valueOf(letra))){
-            actualizarPalabraActual(letra);
-            return true;
-        }else{
-            intentos--;
-            return false;
-        }
-    }
-    @Override
-    public boolean hasGanado(){
+    public boolean hasGanado() {
         return palabraActual.equals(palabraSecreta);
     }
     
@@ -48,18 +49,18 @@ public class JuegoAhorcadoFijo extends juegoAhorcadoBase {
     public void jugar() {
         inicializarPalabraSecreta();
         while (intentos > 0 && !hasGanado()) {
-            String input = JOptionPane.showInputDialog("Palabra: " + palabraActual +
-                    "\nIntentos restantes: " + intentos +
-                    "\nIngresa una letra:");
-
-            if (input != null && input.length() == 1) {
-                verificarLetra(input.charAt(0));
+            String input = JOptionPane.showInputDialog("Palabra: " + palabraActual + 
+                "\nIntentos restantes: " + intentos + "\nIngresa una letra:");
+            if (input != null && input.length() == 1 && verificarLetra(input.charAt(0))) {
+                actualizarPalabraActual(input.charAt(0));
             }
         }
+        
         if (hasGanado()) {
-            JOptionPane.showMessageDialog(null, "¡Felicidades! Has ganado. La palabra era: " + palabraSecreta);
+            JOptionPane.showMessageDialog(null, "¡Felicidades! Has adivinado la palabra: " + palabraSecreta);
         } else {
             JOptionPane.showMessageDialog(null, "¡Perdiste! La palabra era: " + palabraSecreta);
         }
+        intentos = 5;
     }
 }

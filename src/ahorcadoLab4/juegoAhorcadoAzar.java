@@ -17,10 +17,13 @@ public class juegoAhorcadoAzar extends juegoAhorcadoBase{
     public void actualizarPalabraActual(char letra) {
         char[] palabra = new char[palabraSecreta.length()];
         
-        for (int i = 0; i < palabraSecreta.length(); i++) {
-            if (letra == palabraSecreta.charAt(i))
+        for (int i = 0; i < palabraSecreta.length(); i++ ) {
+            if (palabraSecreta.charAt(i) == letra ){ 
                 palabra[i] = letra;
-            palabra[i] = '-';
+            }else if(palabraActual.charAt(i) != '-'){
+                palabra[i] = palabraActual.charAt(i);}
+            else{
+                palabra[i] = '-';}
         }
         
         palabraActual = new String(palabra);
@@ -44,26 +47,30 @@ public class juegoAhorcadoAzar extends juegoAhorcadoBase{
     @Override
     public void inicializarPalabraSecreta() {
         palabraSecreta = APS.palabraRnd();
+        palabraActual = "_".repeat(palabraSecreta.length()); 
     }
 
     @Override
     public void jugar() {
         inicializarPalabraSecreta();
-        while (intentos > 0 && !hasGanado()) {
-            String input = JOptionPane.showInputDialog("Palabra: " + palabraActual +
-                    "\nIntentos restantes: " + intentos +
-                    "\nIngresa una letra:");
+        if (!palabraSecreta.equals("////")){
+            while (intentos > 0 && !hasGanado()) {
+                String input = JOptionPane.showInputDialog("Palabra: " + palabraActual +
+                        "\nIntentos restantes: " + intentos +
+                        "\nIngresa una letra:");
 
-            if (input != null && input.length() == 1) {
-                verificarLetra(input.charAt(0));
+                if (input != null && input.length() == 1 && verificarLetra(input.charAt(0)) == true) {
+                    actualizarPalabraActual(input.charAt(0));
+                }
             }
-        }
-        if (hasGanado()) {
-            JOptionPane.showMessageDialog(null, "¡Felicidades! Has ganado. La palabra era: " + palabraSecreta);
-        } else {
-            JOptionPane.showMessageDialog(null, "¡Perdiste! La palabra era: " + palabraSecreta);
-        }
+            if (hasGanado()) {
+                JOptionPane.showMessageDialog(null, "¡Felicidades! Has ganado. La palabra era: " + palabraSecreta);
+            } else {
+                JOptionPane.showMessageDialog(null, "¡Perdiste! La palabra era: " + palabraSecreta);
+            }
+            intentos = 5;
     }
+}
 
  
 }

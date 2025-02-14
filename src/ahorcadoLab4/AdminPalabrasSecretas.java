@@ -15,8 +15,13 @@ public class AdminPalabrasSecretas {
     }
     
     public String palabraRnd(){
-        Random rnd = new Random();
-        int index = rnd.nextInt(palabraSecreta.size());
-        return palabraSecreta.get(index);
+        if(palabraSecreta.size() > 0){
+            Random rnd = new Random();
+            int index = rnd.nextInt(palabraSecreta.size());
+            System.out.println(palabraSecreta.get(index));
+            return palabraSecreta.get(index);
+        }
+        
+        return "////";
     }
 }
