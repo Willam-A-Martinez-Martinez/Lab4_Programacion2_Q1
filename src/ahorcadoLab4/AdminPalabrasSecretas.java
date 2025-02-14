@@ -1,13 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ahorcadoLab4;
 
-/**
- *
- * @author DELL
- */
+import java.util.ArrayList;
+import java.util.Random;
+
 public class AdminPalabrasSecretas {
+    protected ArrayList<String> palabraSecreta;
     
+    public AdminPalabrasSecretas() {
+        this.palabraSecreta = new ArrayList<>();
+    }
+    
+    public void agregarPalabra(String palabra){
+        palabraSecreta.add(palabra);
+    }
+    
+    public String palabraRnd(){
+        Random rnd = new Random();
+        int index = rnd.nextInt(palabraSecreta.size());
+        return palabraSecreta.get(index);
+    }
 }
